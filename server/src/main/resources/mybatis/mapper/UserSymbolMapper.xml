@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.royal.mapper.UserSymbolMapper">
+
+	<select id="getMyPage" parameterType="PageData" resultType="SymbolInfo">
+		SELECT
+			b.id,
+			b.symbol_code symbolCode,
+			b.symbol_name symbolName,
+			b.STATUS,
+			b.symbol_type symbolType,
+			b.unit_price_one unitPriceOne,
+			b.unit_price_two unitPriceTwo,
+			b.unit_price_three unitPriceThree,
+			b.quantity_one quantityOne,
+			b.quantity_two quantityTwo,
+			b.quantity_three quantityThree,
+			b.quantity_commission_charges_one quantityCommissionChargesOne,
+			b.quantity_commission_charges_two quantityCommissionChargesTwo,
+			b.quantity_commission_charges_three quantityCommissionChargesThree,
+			b.quantity_overnight_fee_one quantityOvernightFeeOne,
+			b.quantity_overnight_fee_two quantityOvernightFeeTwo,
+			b.quantity_overnight_fee_three quantityOvernightFeeThree,
+			b.quantity_price_fluctuation_one quantityPriceFluctuationOne,
+			b.quantity_price_fluctuation_two quantityPriceFluctuationTwo,
+			b.quantity_price_fluctuation_three quantityPriceFluctuationThree,
+			b.entry_orders entryOrders,
+			b.symbol_show symbolShow
+		FROM
+			b_user_symbol a
+		LEFT JOIN b_symbol_info b ON a.symbol_code = b.symbol_code
+		WHERE
+			a.login_name = #{loginName}
+		ORDER BY
+			b.id
+
+	</select>
+
+</mapper>

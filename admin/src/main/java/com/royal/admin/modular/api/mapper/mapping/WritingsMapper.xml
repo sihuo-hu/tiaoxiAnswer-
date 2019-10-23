@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.royal.admin.modular.api.mapper.WritingsMapper">
+
+    <select id="selectPageList" resultType="map">
+        SELECT
+	        a.b_id id,
+	        a.b_name wName,
+	        a.b_user_count userCount,
+	        b.b_title title,
+	        a.b_create_time createTime,
+	        a.b_sort_number sortNumber
+        FROM
+	        b_writings a
+        LEFT JOIN b_question_paper b ON a.b_q_id = b.b_id
+        ORDER BY
+	        b.b_create_time,
+	        a.b_create_time
+    </select>
+
+
+	<select id="myListByQId" resultType="com.royal.admin.modular.api.json.WritingsToTopicListJson">
+		SELECT
+			a.b_id id,
+			a.b_name wName,
+			b.b_id tId,
+			b.b_answer answer,
+			b.b_options options,
+			b.b_title title
+		FROM
+			b_writings a
+		LEFT JOIN b_topic b ON a.b_id = b.b_w_id
+		WHERE
+			a.b_q_id = #{qId}
+		ORDER BY
+			a.b_sort_number ASC,
+			b.b_id ASC
+	</select>
+	
+	<select id="myWritingsCountByQId" resultType="com.royal.admin.modular.api.json.WritingsCount">
+		SELECT
+			a.b_id id,
+			COUNT(b.b_id) tCount
+		FROM
+			b_writings a
+		LEFT JOIN b_topic b ON a.b_id = b.b_w_id
+		WHERE
+			a.b_q_id = #{qId}
+		GROUP BY
+			a.b_id
+	</select>
+
+</mapper>

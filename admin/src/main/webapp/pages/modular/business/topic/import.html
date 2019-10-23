@@ -1,0 +1,31 @@
+@layout("/common/_container.html",{bg:"bg-white",js:["/assets/modular/business/topic/import.js"]}){
+<form id="topicForm" lay-filter="topicForm" class="layui-form model-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">活动名称<span style="color: red;">*</span></label>
+        <div class="layui-input-block layui-form" lay-filter="huodong">
+            <select name="qId" id="qIds" lay-filter="huodongSelect">
+                <option value="0">请选择活动名称</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">章节名称<span style="color: red;">*</span></label>
+        <div class="layui-input-block layui-form" lay-filter="zhangjie">
+            <select name="wId" id="wIds" >
+                <option value="0">请选择章节名称</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">文件<span style="color: red;">*</span></label>
+        <div class="layui-input-block layui-form" lay-filter="file">
+            <button type="button" class="layui-btn layui-btn-normal" id="importFile">选择文件</button>
+        </div>
+
+    </div>
+    <div class="layui-form-item text-right">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        <button class="layui-btn" type="button" id="saveFile">保存</button>
+    </div>
+</form>
+@}

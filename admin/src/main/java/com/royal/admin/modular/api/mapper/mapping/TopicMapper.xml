@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.royal.admin.modular.api.mapper.TopicMapper">
+
+    <select id="selectMyList" resultType="map">
+        SELECT
+			a.b_id id,
+			a.b_answer answer,
+			a.b_options options,
+			a.b_title title,
+			b.b_title qName,
+			c.b_name wName
+		FROM
+			b_topic a
+		LEFT JOIN b_question_paper b ON a.b_q_id = b.b_id
+		LEFT JOIN b_writings c ON a.b_w_id = c.b_id
+		ORDER BY
+			b.b_create_time DESC,
+			c.b_sort_number ASC,
+			a.b_id DESC
+    </select>
+
+</mapper>

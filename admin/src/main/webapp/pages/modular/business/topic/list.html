@@ -1,0 +1,39 @@
+@layout("/common/_container.html",{plugins:["ztree"],js:["/assets/modular/business/topic/list.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">题库管理</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm15 layui-col-md12 layui-col-lg13">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                @if(shiro.hasPermission("/topic/add")){
+                                <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
+                                @}
+                                @if(shiro.hasPermission("/topic/readExcel")){
+                                <button id="btnImport" class="layui-btn icon-btn"><i class="layui-icon">&#xe681;</i>导入</button>
+                                @}
+                                @if(shiro.hasPermission("/topic/exportExcel")){
+                                <button id="btnDownload" class="layui-btn icon-btn"><i class="layui-icon">&#xe601;</i>下载模板</button>
+                                @}
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="topicTable" lay-filter="topicTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="tableBar">
+    @if(shiro.hasPermission("/topic/delete")){
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+    @}
+
+</script>
+@}

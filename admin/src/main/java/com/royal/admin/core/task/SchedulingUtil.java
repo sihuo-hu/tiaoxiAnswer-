@@ -47,7 +47,7 @@
 //        return taskScheduler;
 //    }
 //
-//    private static final Logger log = LoggerFactory.getLogger(SchedulingUtil.class);
+//
 //
 //
 //    /**
